@@ -12,7 +12,7 @@ Contents:
 - [`List`](#list)
 - [`Set`](#set)
 - [`Map`](#map)
-- [Null](#null)
+- [Null value](#null-value)
 - [Null safety](#null-safety)
 - [References](#references)
 
@@ -291,7 +291,7 @@ void main() {
 }
 ```
 
-## Null
+## Null value
 
 In Dart `null` represents an empty value. A variable has to hold a value before it can be used. If we want to create a variable which can be `null`, we can add `?` when declaring it.
 
