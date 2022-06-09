@@ -9,9 +9,9 @@ Contents:
 - [`dynamic` keyword](#dynamic-keyword)
 - [Type conversion](#type-conversion)
 - [Checking type of a dynamic variable](#checking-type-of-a-dynamic-variable)
-- [List](#list)
-- [Set](#set)
-- [Map](#map)
+- [`List`](#list)
+- [`Set`](#set)
+- [`Map`](#map)
 - [Null](#null)
 - [Null safety](#null-safety)
 - [References](#references)
@@ -206,7 +206,7 @@ void main() {
 }
 ```
 
-## List
+## `List`
 
 ```dart
 void main() {
@@ -235,7 +235,7 @@ void main() {
 }
 ```
 
-## Set
+## `Set`
 
 Like `List`, `Set` can holds more than one value. The difference is `Set` can only hold unique values.
 
@@ -264,7 +264,7 @@ void main() {
 }
 ```
 
-## Map
+## `Map`
 
 `Map` can holds more than one **key-value pair**. With `List`, the key type is `int` starting from 0, and will be incremented each time we insert a new value. In `Map` we have to define the type for both key and value. If we do not define the type, then it is assumed that the type is `dynamic`.
 
