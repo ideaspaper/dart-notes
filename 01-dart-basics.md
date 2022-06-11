@@ -1,4 +1,4 @@
-# Dart Basics
+# Basics
 
 Contents:
 
@@ -9,11 +9,14 @@ Contents:
 - [`dynamic` keyword](#dynamic-keyword)
 - [Type conversion](#type-conversion)
 - [Checking type of a dynamic variable](#checking-type-of-a-dynamic-variable)
-- [`List`](#list)
-- [`Set`](#set)
-- [`Map`](#map)
-- [Null value](#null-value)
+- [List](#list)
+- [Set](#set)
+- [Map](#map)
+- [Null](#null)
 - [Null safety](#null-safety)
+- [Looping](#looping)
+- [Functions](#functions)
+- [Getting arguments in main](#getting-arguments-in-main)
 - [References](#references)
 
 ## Declaring variables
@@ -206,7 +209,7 @@ void main() {
 }
 ```
 
-## `List`
+## List
 
 ```dart
 void main() {
@@ -235,7 +238,7 @@ void main() {
 }
 ```
 
-## `Set`
+## Set
 
 Like `List`, `Set` can holds more than one value. The difference is `Set` can only hold unique values.
 
@@ -264,7 +267,7 @@ void main() {
 }
 ```
 
-## `Map`
+## Map
 
 `Map` can holds more than one **key-value pair**. With `List`, the key type is `int` starting from 0, and will be incremented each time we insert a new value. In `Map` we have to define the type for both key and value. If we do not define the type, then it is assumed that the type is `dynamic`.
 
@@ -291,7 +294,7 @@ void main() {
 }
 ```
 
-## Null value
+## Null
 
 In Dart `null` represents an empty value. A variable has to hold a value before it can be used. If we want to create a variable which can be `null`, we can add `?` when declaring it.
 
@@ -378,6 +381,170 @@ void main() {
   int? length3 = variable?.length;
   // Will compile
 }
+```
+
+## Looping
+
+```dart
+void main(List<String> args) {
+  const names = <String>['Acong', 'Suherman', 'Sudirman'];
+
+  for (var i = 0; i < names.length; i++) {
+    print(names[i]);
+  }
+
+  for (var name in names) {
+    print(name);
+  }
+
+  names.forEach((element) {
+    print(element);
+  });
+  // Avoid using `forEach` with a function literal.
+
+  names.forEach(print);
+}
+```
+
+## Functions
+
+```dart
+void main() {
+  greeting1();
+
+  print(greeting2());
+
+  print(greeting3('Acong'));
+
+  print(greeting4('Acong'));
+  print(greeting4('Acong', 'Suherman'));
+  print(greeting4('Acong', 'Suherman', 'Sudirman'));
+
+  print(greeting5('Acong'));
+  print(greeting5('Acong', 'Suherman'));
+  print(greeting5('Acong', 'Suherman', 'Sudirman'));
+
+  print(greeting6(firstName: 'Acong'));
+  print(greeting6(middleName: 'Suherman', firstName: 'Acong'));
+  print(greeting6(
+      lastName: 'Sudirman', middleName: 'Suherman', firstName: 'Acong'));
+
+  print(greeting7(firstName: 'Acong'));
+  print(greeting7(middleName: 'Suherman', firstName: 'Acong'));
+  print(greeting7(
+      lastName: 'Sudirman', middleName: 'Suherman', firstName: 'Acong'));
+
+  print(greeting8(
+      firstName: 'Acong', middleName: 'Suherman', lastName: 'Sudirman'));
+
+  print(greeting9(
+      firstName: 'Acong', middleName: 'Suherman', lastName: 'Sudirman'));
+
+  // Calling greeting10 with anonymous function
+  print(greeting10('Acong', 'Suherman', 'Sudirman', (
+      {required String firstName,
+      required String middleName,
+      required String lastName}) {
+    return 'HELLO ${firstName.toUpperCase()} ${middleName.toUpperCase()} ${lastName.toUpperCase()}';
+  }));
+
+  // Get returned function from greeting11
+  var functionFromGreeting11 = greeting11();
+  print(functionFromGreeting11(
+      firstName: 'Acong', middleName: 'Suherman', lastName: 'Sudirman'));
+}
+
+// Function without return value
+void greeting1() {
+  print('Hello world!');
+}
+
+// Function with String as return value
+String greeting2() {
+  return 'Hello world!';
+}
+
+// Function parameters
+String greeting3(String name) {
+  return 'Hello $name!';
+}
+
+// Optional parameters
+String greeting4(String firstName, [String? middleName, String? lastName]) {
+  return 'Hello $firstName $middleName $lastName';
+}
+
+// Optional parameters with default value
+String greeting5(String firstName,
+    [String middleName = '', String lastName = '']) {
+  return 'Hello $firstName $middleName $lastName';
+}
+
+// Named parameters
+String greeting6({String? firstName, String? middleName, String? lastName}) {
+  return 'Hello $firstName $middleName $lastName';
+}
+
+// Named parameters with default value
+String greeting7(
+    {String? firstName, String middleName = '', String lastName = ''}) {
+  return 'Hello $firstName $middleName $lastName';
+}
+
+// Required in named parameters
+String greeting8(
+    {required String firstName,
+    required String middleName,
+    required String lastName}) {
+  return 'Hello $firstName $middleName $lastName';
+}
+
+// Function short expression
+String greeting9(
+        {required String firstName,
+        required String middleName,
+        required String lastName}) =>
+    'Hello $firstName $middleName $lastName';
+
+// Function as parameter
+String greeting10(
+    String firstName,
+    String middleName,
+    String lastName,
+    String Function(
+            {required String firstName,
+            required String middleName,
+            required String lastName})
+        displayFunction) {
+  return displayFunction(
+      firstName: firstName, middleName: middleName, lastName: lastName);
+}
+
+// Function that returns another function
+String Function(
+    {required String firstName,
+    required String middleName,
+    required String lastName}) greeting11() {
+  return (
+          {required String firstName,
+          required String middleName,
+          required String lastName}) =>
+      'Hello $firstName $middleName $lastName';
+}
+```
+
+## Getting arguments in main
+
+```dart
+void main(List<String> args) {
+  print(args);
+}
+```
+
+You can execute the code as below.
+
+```
+$ dart run bin/main.dart Acong Suherman Sudirman
 ```
 
 ## References
